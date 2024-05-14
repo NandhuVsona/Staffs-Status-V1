@@ -18,7 +18,7 @@ const {
 const router = express.Router();
 
 //GET ROUTES
-
+console.log('hello it s comming')
 router.get("/signup", signupPage);
 router.get("/api/v1/staffs", isLogin, getAllStaffs);
 router.get("/overview/:id", isLogin, overview);

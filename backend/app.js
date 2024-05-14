@@ -11,7 +11,7 @@ const bodyParser = require("body-parser");
 const multer = require("multer");
 const ejs = require("ejs");
 const { StatsFs } = require("fs");
-const staffRoutes = require("./routes/staffRouter");
+//const staffRoutes = require("./routes/staffRouter");
 
 //const uploads = multer({dest:'/Staffs Status/backend/uploads/'})
 
@@ -210,10 +210,10 @@ app.get("/logout", async (req, res) => {
   res.status(200).render("signin.ejs");
 });
 
-// app.get("/database/reset", async (req, res) => {
-//   await Tour.deleteMany();
-//   res.redirect("/");
-// });
+app.get("/database/reset", async (req, res) => {
+  await Tour.deleteMany();
+  res.redirect("/");
+});
 
 app.get("/myaccount", isLogin, async (req, res) => {
   try {
@@ -262,7 +262,7 @@ app.patch("/myaccount/:id", async (req, res) => {
       let isExistDate = isExist.date[isExist.date.length - 1].split(" ");
       if (isExistDate[1] == date) {
         let staff = await Tour.findOne({ _id: id });
-        return res.status(201).render("account.ejs", { staff: staff});
+        return res.status(201).render("account.ejs", { staff: staff });
       } else {
         let staff = await Tour.findOneAndUpdate(
           { _id: id },
